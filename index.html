@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Policy Adaptation from Foundation Model Feedback">
+  <meta name="keywords" content="Policy Adaptation, Foundation Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPLAYD</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FV4ZJ9PVSV');
+  </script>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-3 publication-title">Policy Adaptation from Foundation Model Feedback</h1>
+          <!-- <h3 class="title is-4 conference-authors"><a target="_blank" href="https://www.robot-learning.org/">CoRL 2022</a></h3>-->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://geyuying.github.io/">Yuying Ge</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Annabella Macaluso</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a target="_blank" href="http://www.cs.columbia.edu/~lierranli/">Li Erran Li</a><sup>3</sup>,</span>
+              <span class="author-block">
+              <a target="_blank" href="http://luoping.me/">Ping Luo</a><sup>1</sup>,</span>
+                <span class="author-block">
+              <a target="_blank" href="https://xiaolonw.github.io/">Xiaolong Wang</a><sup>2</sup>
+            </span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Hong Kong,</span>
+            <span class="author-block"><sup>2</sup>University of California, San Diego</span>
+            <span class="author-block"><sup>3</sup>AWS AI, Amazon</span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+               <!--<span class="link-block">
+                <a target="_blank" href="paper/peract_corl2022.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>-->
+
+            <!-- Arxiv Link. -->
+            <span class="link-block">
+              <a target="_blank" href="https://arxiv.org/abs/2212.07398"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file"></i>
+                </span>
+                <span>ArXiv</span>
+              </a>
+            </span>
+       
+
+            <!-- Video Link. -->
+            <span class="link-block">
+              <a target="_blank" href="https://drive.google.com/file/d/1GBAFrtJqESa7F9PFmNX5GWW9NfLCYADN/view?usp=share_link"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                </span>
+                <span>Video</span>
+              </a>
+            </span>
+
+
+            <!-- Colab Link. -->
+            <!--<span class="link-block">
+              <a target="_blank" href="https://colab.research.google.com/drive/1wpaosDS94S0rmtGmdnP0J1TjS7mEM14V?usp=sharing"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                </span>
+                <span>Colab</span>
+                </a>
+            </span>-->
+
+            <!-- Code Link. -->
+            <!--<span class="link-block">
+              <a target="_blank" href="https://github.com/peract/peract"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>-->
+
+            </div>
+          </div>
+<!--           <br>
+          <br> -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered  is-centered">
+        </br>
+            <video autoplay muted loop playsinline width="60%" style="border-radius: 10px">
+              <source src="media/videos/teaser.mp4"
+                      type="video/mp4">
+            </video>
+        </br>
+          </br>
+        </div>
+        <br>
+        <h2 class="subtitle has-text-centered">
+            We propose policy adaptation from foundation model feedback (PAFF) to adapt a language-conditioned policy <br> across object composition, tasks and environments including from simulation to the real world (shown below).
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shape-bowl">
+          <video poster="" id="shape-bowl" autoplay muted loop width="100%">
+            <source src="media/videos/real_shape_bowl.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+                <div class="item item-shape">
+          <video poster="" id="shape" autoplay muted loop width="100%">
+            <source src="media/videos/real_shape.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-block-bowl">
+          <video poster="" id="block-bowl" autoplay muted loop width="100%">
+            <source src="media/videos/real_block_bowl.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <div class="item item-block">
+          <video poster="" id="block" autoplay muted loop width="100%">
+            <source src="media/videos/real_block.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+Recent progress on vision-language foundation models have brought significant advancement to building general-purpose robots.
+            By using the pre-trained models to encode the scene and instructions as inputs for decision making,
+            the instruction-conditioned policy can generalize across different objects and tasks. While this is encouraging,
+            the policy still fails in most cases given an unseen task or environment. In this work, we propose Policy Adaptation from Foundation model Feedback (PAFF).
+            When deploying the trained policy to a new task or a new environment, we first let the policy play with randomly generated instructions to record the demonstrations.
+            While the execution could be wrong, we can use the pre-trained foundation models to provide feedback by relabeling the demonstrations.
+            This automatically provides new pairs of demonstration-instruction data for policy fine-tuning.
+            We evaluate our method on a broad range of experiments with the focus on generalization on unseen objects, unseen tasks, unseen environments, and sim-to-real transfer.
+            We show PAFF improves baselines by a large margin in all cases.
+        </div>
+          <br>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+  <!-- Paper video. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-two-thirds">
+
+                <h2 class="title is-3">Video</h2>
+        <div class="video-container">
+            <iframe src="https://drive.google.com/file/d/17Se7lT9pIEjn2HhBqDAjaQTDRcUh54Za/preview" width="1028" height="578" allow="autoplay"></iframe>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+      <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+    <!--<div class="rows is-centered ">
+      <div class="row is-full-width">-->
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+        <!-- <br> -->
+        </div>
+        </br>
+        <img src="media/figures/method.jpg" class="interpolation-image"
+         alt="Interpolate start reference image." />
+        </br>
+        </br>
+          <p>
+The pipeline of policy adaptation from foundation model feedback (PAFF). When we adapt a trained policy to a new task,
+              we first let the robot <b>play</b>, that is, the policy continuously predicts and performs actions given a series of randomly generated language instructions.
+              We record these demonstrations including the visual observations and the model's actions. After that, we let the model <b>relabel</b>, that is,
+              the vision-language foundation model relabels the demonstrations by retrieving the language instructions given the recorded visual observations.
+              We then fine-tune the policy with the accurate paired observations and instructions, and the corresponding actions, which are collected in an automatic way.
+          </p>
+        <!--/ Re-rendering. -->
+            </div>
+            </div>
+          </div>
+        </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+
+
+    <!-- Animation. -->
+    <div class="rows is-centered ">
+      <div class="row is-full-width">
+        <h2 class="title is-3">Sim-to-real Transfer</h2>
+        <p>
+        We train a policy on simulation data and adapt it to the real world.
+          </p>
+          </br>
+        <center>
+        <img src="media/figures/sim2real.png" width="100%" class="interpolation-image"
+         alt="Interpolate start reference image." />
+            </center>
+        </br>
+          </br>
+        <!-- Interpolating. -->
+                <h3 class="title is-4">Comparisn with Baseline</h3>
+        <div class="content has-text-justified">
+          </div>
+
+<div class="columns is-centered">
+      <div class="column">
+
+        <div class="content">
+
+          <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+            <source src="media/videos/real_baseline.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+              <source src="media/videos/real_our.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+              </div>
+               </div>
+                    </div>
+         </div>
+        <br/>
+        <br/>
+              <br/>
+        <br/>
+         <!-- Animation. -->
+    <div class="rows is-centered ">
+      <div class="row is-full-width">
+        <h2 class="title is-3">Compositional Generalization</h2>
+        <p>
+        We train a policy to pack objects of different shapes in the brown box, and put blocks of different colors in the bowls of different colors, and adapt it to put objects of different shapes in the bowls of different colors.
+          </p>
+          </br>
+        <center>
+        <img src="media/figures/compositional.png" width="76%" class="interpolation-image"
+         alt="Interpolate start reference image." />
+            </center>
+        </br>
+          </br>
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Recorded Demonstration</h3>
+        <div class="content has-text-justified">
+        <!-- <br> -->
+        </div>
+                 <center>
+            <video autoplay muted loop playsinline width="40%" style="border-radius: 10px">
+              <source src="media/videos/record_shape_bowl.mp4"
+                      type="video/mp4">
+            </video>
+          </center>
+        <br/>
+        <br/>
+                <h3 class="title is-4">Comparisn with Baseline</h3>
+        <div class="content has-text-justified">
+          </div>
+
+<div class="columns is-centered">
+      <div class="column">
+
+        <div class="content">
+
+          <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+            <source src="media/videos/shape_bowl_baseline.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+              <source src="media/videos/shape_bowl_our.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+              </div>
+               </div>
+                    </div>
+         </div>
+        <br/>
+        <br/>
+              <br/>
+        <br/>
+         <!-- Animation. -->
+    <div class="rows is-centered ">
+      <div class="row is-full-width">
+        <h2 class="title is-3">Out-of-distribution (Unseen Objects)</h2>
+        <p>
+        We train a policy to pack certain objects in the brown box, and adapt it to pack unseen objects.
+          </p>
+          </br>
+        <center>
+        <img src="media/figures/objects.png" width="54%" class="interpolation-image"
+         alt="Interpolate start reference image." />
+            </center>
+        </br>
+          </br>
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Recorded Demonstration</h3>
+        <div class="content has-text-justified">
+        <!-- <br> -->
+        </div>
+                 <center>
+            <video autoplay muted loop playsinline width="40%" style="border-radius: 10px">
+              <source src="media/videos/record_objects.mp4"
+                      type="video/mp4">
+            </video>
+          </center>
+        <br/>
+        <br/>
+                <h3 class="title is-4">Comparisn with Baseline</h3>
+        <div class="content has-text-justified">
+          </div>
+
+<div class="columns is-centered">
+      <div class="column">
+
+        <div class="content">
+
+          <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+            <source src="media/videos/objects_baseline.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+              <source src="media/videos/objects_our.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+              </div>
+               </div>
+                    </div>
+         </div>
+        <br/>
+        <br/>
+              <br/>
+        <br/>
+         <!-- Animation. -->
+    <div class="rows is-centered ">
+      <div class="row is-full-width">
+        <h2 class="title is-3">Out-of-distribution (Unseen Environment)</h2>
+        <p>
+        We train a policy on seen environments and adapt it to a new environment with different textures and differently positioned static elements such as the sliding door, the drawer and the light button.
+          </p>
+          </br>
+        <center>
+        <img src="media/figures/environment.png" width="74%" class="interpolation-image"
+         alt="Interpolate start reference image." />
+            </center>
+        </br>
+          </br>
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Recorded Demonstration</h3>
+        <div class="content has-text-justified">
+        <!-- <br> -->
+        </div>
+                 <center>
+            <video autoplay muted loop playsinline width="40%" style="border-radius: 10px">
+              <source src="media/videos/record_calvin.mp4"
+                      type="video/mp4">
+            </video>
+          </center>
+        <br/>
+        <br/>
+                <h3 class="title is-4">Comparisn with Baseline</h3>
+        <div class="content has-text-justified">
+          </div>
+
+<div class="columns is-centered">
+      <div class="column">
+
+        <div class="content">
+
+          <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+            <source src="media/videos/calvin_baseline.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video autoplay muted loop playsinline width="80%" style="border-radius: 10px">
+              <source src="media/videos/calvin_our.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+              </div>
+               </div>
+                    </div>
+         </div>
+
+    </div>
+         </div>
+        </section>
+
+
+
+
+
+<!--
+<section class="section" id="BibTeX">
+  <div class="container is-max-widescreen content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{shridhar2022peract,
+  title     = {Perceiver-Actor: A Multi-Task Transformer for Robotic Manipulation}, 
+  author    = {Shridhar, Mohit and Manuelli, Lucas and Fox, Dieter},
+  booktitle = {Proceedings of the 6th Conference on Robot Learning (CoRL)},
+  year      = {2022},
+}</code></pre>
+  </div>
+</section>
+-->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
